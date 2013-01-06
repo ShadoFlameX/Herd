@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D74EB1C1696F21100E916E1 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D74EB1B1696F21100E916E1 /* person.png */; };
+		0D74EB1E1696F34100E916E1 /* person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D74EB1D1696F34100E916E1 /* person@2x.png */; };
+		0D8B63EC169991AD00639FF1 /* HRDAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B63EB169991AD00639FF1 /* HRDAPI.m */; };
+		0DBB567C1696AE1800FB70B5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBB567B1696AE1800FB70B5 /* UIKit.framework */; };
+		0DBB567E1696AE1800FB70B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBB567D1696AE1800FB70B5 /* Foundation.framework */; };
+		0DBB56801696AE1800FB70B5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBB567F1696AE1800FB70B5 /* CoreGraphics.framework */; };
+		0DBB56861696AE1800FB70B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0DBB56841696AE1800FB70B5 /* InfoPlist.strings */; };
+		0DBB56881696AE1800FB70B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBB56871696AE1800FB70B5 /* main.m */; };
+		0DBB568C1696AE1800FB70B5 /* HRDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBB568B1696AE1800FB70B5 /* HRDAppDelegate.m */; };
+		0DBB568E1696AE1800FB70B5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DBB568D1696AE1800FB70B5 /* Default.png */; };
+		0DBB56901696AE1800FB70B5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DBB568F1696AE1800FB70B5 /* Default@2x.png */; };
+		0DBB56921696AE1800FB70B5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DBB56911696AE1800FB70B5 /* Default-568h@2x.png */; };
+		0DBB56951696AE1800FB70B5 /* HRDMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBB56941696AE1800FB70B5 /* HRDMapViewController.m */; };
+		0DBB56981696AE1800FB70B5 /* HRDMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DBB56961696AE1800FB70B5 /* HRDMapViewController.xib */; };
+		0DBB56A31696AE9100FB70B5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBB56A21696AE9100FB70B5 /* MapKit.framework */; };
+		0DBB56AE1696AF8600FB70B5 /* HRDAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBB56AD1696AF8600FB70B5 /* HRDAnnotation.m */; };
+		0DBB56B31696B5C600FB70B5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBB56B21696B5C600FB70B5 /* CoreLocation.framework */; };
+		0DBB56B71696B9A500FB70B5 /* NSUserDefaults+Herd.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBB56B61696B9A500FB70B5 /* NSUserDefaults+Herd.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0D74EB1B1696F21100E916E1 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = person.png; path = Images/person.png; sourceTree = "<group>"; };
+		0D74EB1D1696F34100E916E1 /* person@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "person@2x.png"; path = "Images/person@2x.png"; sourceTree = "<group>"; };
+		0D8B63EA169991AD00639FF1 /* HRDAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRDAPI.h; sourceTree = "<group>"; };
+		0D8B63EB169991AD00639FF1 /* HRDAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRDAPI.m; sourceTree = "<group>"; };
+		0DBB56771696AE1800FB70B5 /* Herd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Herd.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DBB567B1696AE1800FB70B5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0DBB567D1696AE1800FB70B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0DBB567F1696AE1800FB70B5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0DBB56831696AE1800FB70B5 /* Herd-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Herd-Info.plist"; sourceTree = "<group>"; };
+		0DBB56851696AE1800FB70B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0DBB56871696AE1800FB70B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0DBB56891696AE1800FB70B5 /* Herd-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Herd-Prefix.pch"; sourceTree = "<group>"; };
+		0DBB568A1696AE1800FB70B5 /* HRDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRDAppDelegate.h; sourceTree = "<group>"; };
+		0DBB568B1696AE1800FB70B5 /* HRDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRDAppDelegate.m; sourceTree = "<group>"; };
+		0DBB568D1696AE1800FB70B5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		0DBB568F1696AE1800FB70B5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		0DBB56911696AE1800FB70B5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		0DBB56931696AE1800FB70B5 /* HRDMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRDMapViewController.h; sourceTree = "<group>"; };
+		0DBB56941696AE1800FB70B5 /* HRDMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRDMapViewController.m; sourceTree = "<group>"; };
+		0DBB56971696AE1800FB70B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HRDMapViewController.xib; sourceTree = "<group>"; };
+		0DBB56A21696AE9100FB70B5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0DBB56AC1696AF8600FB70B5 /* HRDAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRDAnnotation.h; sourceTree = "<group>"; };
+		0DBB56AD1696AF8600FB70B5 /* HRDAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRDAnnotation.m; sourceTree = "<group>"; };
+		0DBB56B11696B2E100FB70B5 /* HRDGeoMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRDGeoMath.h; sourceTree = "<group>"; };
+		0DBB56B21696B5C600FB70B5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0DBB56B51696B9A500FB70B5 /* NSUserDefaults+Herd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Herd.h"; sourceTree = "<group>"; };
+		0DBB56B61696B9A500FB70B5 /* NSUserDefaults+Herd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Herd.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0DBB56741696AE1800FB70B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DBB56B31696B5C600FB70B5 /* CoreLocation.framework in Frameworks */,
+				0DBB56A31696AE9100FB70B5 /* MapKit.framework in Frameworks */,
+				0DBB567C1696AE1800FB70B5 /* UIKit.framework in Frameworks */,
+				0DBB567E1696AE1800FB70B5 /* Foundation.framework in Frameworks */,
+				0DBB56801696AE1800FB70B5 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0D74EB1A1696F20600E916E1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0D74EB1B1696F21100E916E1 /* person.png */,
+				0D74EB1D1696F34100E916E1 /* person@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		0D8B63E81699919600639FF1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				0D8B63EA169991AD00639FF1 /* HRDAPI.h */,
+				0D8B63EB169991AD00639FF1 /* HRDAPI.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		0DBB566C1696AE1800FB70B5 = {
+			isa = PBXGroup;
+			children = (
+				0DBB56811696AE1800FB70B5 /* Herd */,
+				0DBB567A1696AE1800FB70B5 /* Frameworks */,
+				0DBB56781696AE1800FB70B5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0DBB56781696AE1800FB70B5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DBB56771696AE1800FB70B5 /* Herd.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0DBB567A1696AE1800FB70B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DBB56B21696B5C600FB70B5 /* CoreLocation.framework */,
+				0DBB56A21696AE9100FB70B5 /* MapKit.framework */,
+				0DBB567B1696AE1800FB70B5 /* UIKit.framework */,
+				0DBB567D1696AE1800FB70B5 /* Foundation.framework */,
+				0DBB567F1696AE1800FB70B5 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0DBB56811696AE1800FB70B5 /* Herd */ = {
+			isa = PBXGroup;
+			children = (
+				0D8B63E81699919600639FF1 /* API */,
+				0DBB56AF1696B2B600FB70B5 /* Extensions */,
+				0DBB56A71696AF3E00FB70B5 /* Model */,
+				0DBB56A61696AF3B00FB70B5 /* View */,
+				0DBB56A51696AF3600FB70B5 /* View Controller */,
+				0DBB568A1696AE1800FB70B5 /* HRDAppDelegate.h */,
+				0DBB568B1696AE1800FB70B5 /* HRDAppDelegate.m */,
+				0DBB56931696AE1800FB70B5 /* HRDMapViewController.h */,
+				0DBB56941696AE1800FB70B5 /* HRDMapViewController.m */,
+				0DBB56961696AE1800FB70B5 /* HRDMapViewController.xib */,
+				0DBB56821696AE1800FB70B5 /* Supporting Files */,
+			);
+			path = Herd;
+			sourceTree = "<group>";
+		};
+		0DBB56821696AE1800FB70B5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0D74EB1A1696F20600E916E1 /* Images */,
+				0DBB56831696AE1800FB70B5 /* Herd-Info.plist */,
+				0DBB56841696AE1800FB70B5 /* InfoPlist.strings */,
+				0DBB56871696AE1800FB70B5 /* main.m */,
+				0DBB56891696AE1800FB70B5 /* Herd-Prefix.pch */,
+				0DBB568D1696AE1800FB70B5 /* Default.png */,
+				0DBB568F1696AE1800FB70B5 /* Default@2x.png */,
+				0DBB56911696AE1800FB70B5 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0DBB56A51696AF3600FB70B5 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		0DBB56A61696AF3B00FB70B5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0DBB56A71696AF3E00FB70B5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0DBB56AC1696AF8600FB70B5 /* HRDAnnotation.h */,
+				0DBB56AD1696AF8600FB70B5 /* HRDAnnotation.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0DBB56AF1696B2B600FB70B5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0DBB56B11696B2E100FB70B5 /* HRDGeoMath.h */,
+				0DBB56B51696B9A500FB70B5 /* NSUserDefaults+Herd.h */,
+				0DBB56B61696B9A500FB70B5 /* NSUserDefaults+Herd.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0DBB56761696AE1800FB70B5 /* Herd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DBB569B1696AE1800FB70B5 /* Build configuration list for PBXNativeTarget "Herd" */;
+			buildPhases = (
+				0DBB56731696AE1800FB70B5 /* Sources */,
+				0DBB56741696AE1800FB70B5 /* Frameworks */,
+				0DBB56751696AE1800FB70B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Herd;
+			productName = Herd;
+			productReference = 0DBB56771696AE1800FB70B5 /* Herd.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0DBB566E1696AE1800FB70B5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = HRD;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Bryan Hansen";
+			};
+			buildConfigurationList = 0DBB56711696AE1800FB70B5 /* Build configuration list for PBXProject "Herd" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0DBB566C1696AE1800FB70B5;
+			productRefGroup = 0DBB56781696AE1800FB70B5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0DBB56761696AE1800FB70B5 /* Herd */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0DBB56751696AE1800FB70B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DBB56861696AE1800FB70B5 /* InfoPlist.strings in Resources */,
+				0DBB568E1696AE1800FB70B5 /* Default.png in Resources */,
+				0DBB56901696AE1800FB70B5 /* Default@2x.png in Resources */,
+				0DBB56921696AE1800FB70B5 /* Default-568h@2x.png in Resources */,
+				0DBB56981696AE1800FB70B5 /* HRDMapViewController.xib in Resources */,
+				0D74EB1C1696F21100E916E1 /* person.png in Resources */,
+				0D74EB1E1696F34100E916E1 /* person@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0DBB56731696AE1800FB70B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DBB56881696AE1800FB70B5 /* main.m in Sources */,
+				0DBB568C1696AE1800FB70B5 /* HRDAppDelegate.m in Sources */,
+				0DBB56951696AE1800FB70B5 /* HRDMapViewController.m in Sources */,
+				0DBB56AE1696AF8600FB70B5 /* HRDAnnotation.m in Sources */,
+				0DBB56B71696B9A500FB70B5 /* NSUserDefaults+Herd.m in Sources */,
+				0D8B63EC169991AD00639FF1 /* HRDAPI.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0DBB56841696AE1800FB70B5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DBB56851696AE1800FB70B5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0DBB56961696AE1800FB70B5 /* HRDMapViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DBB56971696AE1800FB70B5 /* en */,
+			);
+			name = HRDMapViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0DBB56991696AE1800FB70B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0DBB569A1696AE1800FB70B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0DBB569C1696AE1800FB70B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Herd/Herd-Prefix.pch";
+				INFOPLIST_FILE = "Herd/Herd-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0DBB569D1696AE1800FB70B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Herd/Herd-Prefix.pch";
+				INFOPLIST_FILE = "Herd/Herd-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0DBB56711696AE1800FB70B5 /* Build configuration list for PBXProject "Herd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DBB56991696AE1800FB70B5 /* Debug */,
+				0DBB569A1696AE1800FB70B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DBB569B1696AE1800FB70B5 /* Build configuration list for PBXNativeTarget "Herd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DBB569C1696AE1800FB70B5 /* Debug */,
+				0DBB569D1696AE1800FB70B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0DBB566E1696AE1800FB70B5 /* Project object */;
+}
