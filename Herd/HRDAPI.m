@@ -53,7 +53,7 @@ static NSString * const APIDomain = @"http://Icarus.local:3000/";
 
 + (void)updateUserWithLocation:(CLLocationCoordinate2D)coordinate
 {
-    NSString *urlString = [APIDomain stringByAppendingPathComponent:@"users/1.json"];
+    NSString *urlString = [APIDomain stringByAppendingPathComponent:[NSString stringWithFormat:@"users/updateByToken/%@.json", [NSUserDefaults standardUserDefaults].registeredDeviceToken]];
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

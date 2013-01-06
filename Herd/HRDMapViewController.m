@@ -14,6 +14,9 @@
 #import "HRDAppDelegate.h"
 #import <MapKit/MapKit.h>
 
+static CLLocationDegrees const MeetingPointLatitude = 37.79118f;
+static CLLocationDegrees const MeetingPointLongitude = -122.401519;
+
 static CGFloat const DefaultMapSpan = 0.5f;
 
 @interface HRDMapViewController ()
@@ -34,7 +37,7 @@ static CGFloat const DefaultMapSpan = 0.5f;
     
     self.otherUserAnnotations = [NSMutableDictionary dictionary];
     
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(37.79118f, -122.401519);
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(MeetingPointLatitude, MeetingPointLongitude);
 	
     self.meetingPointAnnotation = [[HRDAnnotation alloc] initWithUUID:nil coordinate:coordinate title:@"SeatMe HQ"];
     

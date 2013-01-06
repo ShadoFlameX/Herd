@@ -106,6 +106,8 @@ static CGFloat const EventSecondsProximity = 30.0f * 66.0f;
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
 	NSLog(@"Failed to get token, error: %@", error);
+    
+    [NSUserDefaults standardUserDefaults].registeredDeviceToken = @"0";
 }
 
 
