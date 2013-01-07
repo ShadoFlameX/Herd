@@ -41,8 +41,9 @@ static NSString * const APIDomain = @"http://Icarus.local:3000/";
             NSString *deviceToken = [userInfo objectForKey:@"device_token"];
             CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([[userInfo objectForKey:@"latitude"] doubleValue], [[userInfo objectForKey:@"longitude"] doubleValue]);
             NSString *name = [userInfo objectForKey:@"name"];
+            BOOL hasArrived = [[userInfo objectForKey:@"has_arrived"] boolValue];
             
-            HRDAnnotation *annotation = [[HRDAnnotation alloc] initWithUUID:deviceToken coordinate:coordinate title:name];
+            HRDAnnotation *annotation = [[HRDAnnotation alloc] initWithUUID:deviceToken coordinate:coordinate title:name hasArrived:hasArrived];
             
             [allAnnotations addObject:annotation];
         }];

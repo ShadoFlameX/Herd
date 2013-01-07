@@ -39,7 +39,7 @@ static CGFloat const DefaultMapSpan = 0.5f;
     
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(MeetingPointLatitude, MeetingPointLongitude);
 	
-    self.meetingPointAnnotation = [[HRDAnnotation alloc] initWithUUID:nil coordinate:coordinate title:@"SeatMe HQ"];
+    self.meetingPointAnnotation = [[HRDAnnotation alloc] initWithUUID:nil coordinate:coordinate title:@"SeatMe HQ" hasArrived:NO];
     
     [self.mapView addAnnotation:self.meetingPointAnnotation];
     
@@ -104,6 +104,13 @@ static CGFloat const DefaultMapSpan = 0.5f;
     [appDelegate updateTrackingStatus];
 }
 
+- (IBAction)moveToUserLocation
+{
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, convertMilesToMeters(DefaultMapSpan*2), (DefaultMapSpan*2));
+    
+    [self.mapView setRegion:region animated:YES];
+}
+
 
 #pragma mark - MKMapViewDelegate
 
@@ -113,13 +120,15 @@ static CGFloat const DefaultMapSpan = 0.5f;
         return nil;
     }
     
+    HRDAnnotation *userAnnotation = annotation;
+    
     MKAnnotationView *annotationView = nil;
     
-    if ([annotation isEqual:self.meetingPointAnnotation]) {
+    if ([userAnnotation isEqual:self.meetingPointAnnotation]) {
         annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"MeetingPoint"];
         
         if (!annotationView) {
-            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MeetingPoint"];
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:userAnnotation reuseIdentifier:@"MeetingPoint"];
         }
 
     } else {
@@ -127,12 +136,13 @@ static CGFloat const DefaultMapSpan = 0.5f;
         
         if (!annotationView) {
             annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Person"];
-            annotationView.image = [UIImage imageNamed:@"person"];
             annotationView.calloutOffset = CGPointMake(0.0f, 0.0f);
         }
+        
+        annotationView.image = userAnnotation.hasArrived ? [UIImage imageNamed:@"person-arrived"] : [UIImage imageNamed:@"person"];
     }
     
-    annotationView.annotation = annotation;
+    annotationView.annotation = userAnnotation;
     annotationView.canShowCallout = YES;
     
     return annotationView;
@@ -146,6 +156,7 @@ static CGFloat const DefaultMapSpan = 0.5f;
     [HRDAPI retrieveAllUserAnnotationsWithCompletion:^(NSArray *userAnnotations, NSError *error) {
         if (error) {
             NSLog(@"Error loading all users: %@",error);
+            [self performSelector:@selector(updateUserLocations) withObject:nil afterDelay:5.0f];
             return;
         }
         
@@ -158,6 +169,24 @@ static CGFloat const DefaultMapSpan = 0.5f;
                 HRDAnnotation *existingAnnotation = [self.otherUserAnnotations valueForKey:annotation.uuid];
                 existingAnnotation.coordinate = annotation.coordinate;
                 existingAnnotation.title = annotation.title;
+                
+                BOOL reloadAnnotationView = existingAnnotation.hasArrived != annotation.hasArrived;
+                
+                existingAnnotation.hasArrived = annotation.hasArrived;
+                
+                if (reloadAnnotationView) {
+                    [self.mapView removeAnnotation:existingAnnotation];
+                    [self.mapView addAnnotation:existingAnnotation];
+                    
+                    BOOL isInBackground = [UIApplication sharedApplication].applicationState == UIApplicationStateBackground;
+
+                    if (!isInBackground && existingAnnotation.hasArrived) {
+                        NSString *title = [NSString stringWithFormat:@"%@ has arrived at SeatMe HQ!",existingAnnotation.title];
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alertView show];
+                        
+                    }
+                }
                 
                 [annotationsToRemove removeObject:existingAnnotation];
 

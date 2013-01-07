@@ -14,7 +14,8 @@
 @property (copy, nonatomic, readonly) NSString *uuid;
 @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 @property (copy, nonatomic) NSString *title;
+@property (nonatomic) BOOL hasArrived;
 
-- (id)initWithUUID:(NSString *)uuid coordinate:(CLLocationCoordinate2D)coordinate title:(NSString *)title;
+- (id)initWithUUID:(NSString *)uuid coordinate:(CLLocationCoordinate2D)coordinate title:(NSString *)title hasArrived:(BOOL)hasArrived;
 
 @end

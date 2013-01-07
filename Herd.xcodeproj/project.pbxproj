@@ -25,6 +25,10 @@
 		0DBB56AE1696AF8600FB70B5 /* HRDAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBB56AD1696AF8600FB70B5 /* HRDAnnotation.m */; };
 		0DBB56B31696B5C600FB70B5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBB56B21696B5C600FB70B5 /* CoreLocation.framework */; };
 		0DBB56B71696B9A500FB70B5 /* NSUserDefaults+Herd.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DBB56B61696B9A500FB70B5 /* NSUserDefaults+Herd.m */; };
+		0DD3D752169A537D0006C84F /* person-arrived.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DD3D750169A537D0006C84F /* person-arrived.png */; };
+		0DD3D753169A537D0006C84F /* person-arrived@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DD3D751169A537D0006C84F /* person-arrived@2x.png */; };
+		0DD3D757169A65D00006C84F /* current-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DD3D755169A65D00006C84F /* current-location.png */; };
+		0DD3D758169A65D00006C84F /* current-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DD3D756169A65D00006C84F /* current-location@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +59,10 @@
 		0DBB56B21696B5C600FB70B5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0DBB56B51696B9A500FB70B5 /* NSUserDefaults+Herd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Herd.h"; sourceTree = "<group>"; };
 		0DBB56B61696B9A500FB70B5 /* NSUserDefaults+Herd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Herd.m"; sourceTree = "<group>"; };
+		0DD3D750169A537D0006C84F /* person-arrived.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "person-arrived.png"; path = "Images/person-arrived.png"; sourceTree = "<group>"; };
+		0DD3D751169A537D0006C84F /* person-arrived@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "person-arrived@2x.png"; path = "Images/person-arrived@2x.png"; sourceTree = "<group>"; };
+		0DD3D755169A65D00006C84F /* current-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "current-location.png"; path = "Images/current-location.png"; sourceTree = "<group>"; };
+		0DD3D756169A65D00006C84F /* current-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "current-location@2x.png"; path = "Images/current-location@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,10 @@
 			children = (
 				0D74EB1B1696F21100E916E1 /* person.png */,
 				0D74EB1D1696F34100E916E1 /* person@2x.png */,
+				0DD3D750169A537D0006C84F /* person-arrived.png */,
+				0DD3D751169A537D0006C84F /* person-arrived@2x.png */,
+				0DD3D755169A65D00006C84F /* current-location.png */,
+				0DD3D756169A65D00006C84F /* current-location@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -245,6 +257,10 @@
 				0DBB56981696AE1800FB70B5 /* HRDMapViewController.xib in Resources */,
 				0D74EB1C1696F21100E916E1 /* person.png in Resources */,
 				0D74EB1E1696F34100E916E1 /* person@2x.png in Resources */,
+				0DD3D752169A537D0006C84F /* person-arrived.png in Resources */,
+				0DD3D753169A537D0006C84F /* person-arrived@2x.png in Resources */,
+				0DD3D757169A65D00006C84F /* current-location.png in Resources */,
+				0DD3D758169A65D00006C84F /* current-location@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
