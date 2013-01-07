@@ -9,13 +9,13 @@
 #import "HRDAPI.h"
 #import "NSUserDefaults+Herd.h"
 
-static NSString * const APIDomain = @"http://Icarus.local:3000/";
+static NSString * const APIDomain = @"http://mighty-lake-3989.herokuapp.com/";
 
 @implementation HRDAPI
 
 + (void)retrieveAllUserAnnotationsWithCompletion:(void(^)(NSArray *userAnnotations, NSError *error))completionBlock;
 {
-    NSString *urlString = [APIDomain stringByAppendingPathComponent:@"users.json"];
+    NSString *urlString = [APIDomain stringByAppendingPathComponent:@"location"];
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -38,9 +38,9 @@ static NSString * const APIDomain = @"http://Icarus.local:3000/";
         NSMutableArray *allAnnotations = [NSMutableArray arrayWithCapacity:userDicts.count];
         
         [userDicts enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(NSDictionary *userInfo, NSUInteger idx, BOOL *stop) {
-            NSString *deviceToken = [userInfo objectForKey:@"device_token"];
+            NSString *deviceToken = [userInfo objectForKey:@"deviceToken"];
             CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([[userInfo objectForKey:@"latitude"] doubleValue], [[userInfo objectForKey:@"longitude"] doubleValue]);
-            NSString *name = [userInfo objectForKey:@"name"];
+            NSString *name = [userInfo objectForKey:@"username"];
             BOOL hasArrived = [[userInfo objectForKey:@"has_arrived"] boolValue];
             
             HRDAnnotation *annotation = [[HRDAnnotation alloc] initWithUUID:deviceToken coordinate:coordinate title:name hasArrived:hasArrived];
@@ -54,7 +54,7 @@ static NSString * const APIDomain = @"http://Icarus.local:3000/";
 
 + (void)updateUserWithLocation:(CLLocationCoordinate2D)coordinate
 {
-    NSString *urlString = [APIDomain stringByAppendingPathComponent:[NSString stringWithFormat:@"users/updateByToken/%@.json", [NSUserDefaults standardUserDefaults].registeredDeviceToken]];
+    NSString *urlString = [APIDomain stringByAppendingPathComponent:@"location"];
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -64,17 +64,16 @@ static NSString * const APIDomain = @"http://Icarus.local:3000/";
     //2013-01-06T11:46:10Z
     dateFormatter.dateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'";
     
-    NSDictionary *parameters = @{@"name" : [NSUserDefaults standardUserDefaults].username,
-                                 @"device_token" : [NSUserDefaults standardUserDefaults].registeredDeviceToken,
+    NSDictionary *parameters = @{@"username" : [NSUserDefaults standardUserDefaults].username,
+                                 @"deviceToken" : [NSUserDefaults standardUserDefaults].registeredDeviceToken,
                                  @"latitude" : [NSNumber numberWithDouble:coordinate.latitude],
-                                 @"longitude" : [NSNumber numberWithDouble:coordinate.longitude],
-                                 @"timestamp" : [dateFormatter stringFromDate:[NSDate date]]
+                                 @"longitude" : [NSNumber numberWithDouble:coordinate.longitude]
     };
     
     NSError *jsonError = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&jsonError];
     
-    request.HTTPMethod = @"PUT";
+    request.HTTPMethod = @"POST";
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
@@ -85,6 +84,9 @@ static NSString * const APIDomain = @"http://Icarus.local:3000/";
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error updating user location: %@",error);
+            
+        } else if (((NSHTTPURLResponse *)response).statusCode >= 400) {
+            NSLog(@"Response error when updating user location: %d",((NSHTTPURLResponse *)response).statusCode);
         }
     }];
 }

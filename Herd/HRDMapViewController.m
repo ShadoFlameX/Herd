@@ -55,6 +55,7 @@ static CGFloat const DefaultMapSpan = 0.5f;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     [self updateUserLocations];
 }
 

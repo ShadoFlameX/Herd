@@ -107,7 +107,7 @@ static CGFloat const EventSecondsProximity = 30.0f * 66.0f;
 {
 	NSLog(@"Failed to get token, error: %@", error);
     
-    [NSUserDefaults standardUserDefaults].registeredDeviceToken = @"0";
+    [NSUserDefaults standardUserDefaults].registeredDeviceToken = @"4";
 }
 
 
