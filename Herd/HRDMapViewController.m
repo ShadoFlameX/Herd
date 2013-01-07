@@ -14,8 +14,8 @@
 #import "HRDAppDelegate.h"
 #import <MapKit/MapKit.h>
 
-static CLLocationDegrees const MeetingPointLatitude = 37.79118f;
-static CLLocationDegrees const MeetingPointLongitude = -122.401519;
+static CLLocationDegrees const MeetingPointLatitude = 37.79125f;
+static CLLocationDegrees const MeetingPointLongitude = -122.40128f;
 
 static CGFloat const DefaultMapSpan = 0.5f;
 
@@ -181,7 +181,7 @@ static CGFloat const DefaultMapSpan = 0.5f;
                     BOOL isInBackground = [UIApplication sharedApplication].applicationState == UIApplicationStateBackground;
 
                     if (!isInBackground && existingAnnotation.hasArrived) {
-                        NSString *title = [NSString stringWithFormat:@"%@ has arrived at SeatMe HQ!",existingAnnotation.title];
+                        NSString *title = [NSString stringWithFormat:@"%@ is arriving at SeatMe HQ!",existingAnnotation.title];
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                         [alertView show];
                         
