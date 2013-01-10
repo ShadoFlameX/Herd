@@ -52,18 +52,50 @@ static NSString * const APIDomain = @"http://mighty-lake-3989.herokuapp.com/";
     }];    
 }
 
++ (void)retrieveEventWithCompletion:(void(^)(HRDAnnotation *eventAnnotation, NSDate *eventDate, NSError *error))completionBlock
+{
+    NSString *urlString = [APIDomain stringByAppendingPathComponent:@"event"];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            completionBlock(nil,nil,error);
+            return;
+        }
+        
+        NSError *parsingError = nil;
+        NSDictionary *meetingPointInfo = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parsingError];
+        
+        if (parsingError) {
+            completionBlock(nil,nil,parsingError);
+            return;
+        }
+        
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([[meetingPointInfo objectForKey:@"latitude"] doubleValue], [[meetingPointInfo objectForKey:@"longitude"] doubleValue]);
+        
+        NSString *name = [meetingPointInfo objectForKey:@"name"];
+        
+        HRDAnnotation *annotation = [[HRDAnnotation alloc] initWithUUID:nil coordinate:coordinate title:name hasArrived:NO];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss";
+        
+        NSDate *date = [dateFormatter dateFromString:[meetingPointInfo objectForKey:@"when"]];
+        
+        completionBlock(annotation, date, nil);
+    }];
+}
+
 + (void)updateUserWithLocation:(CLLocationCoordinate2D)coordinate
 {
     NSString *urlString = [APIDomain stringByAppendingPathComponent:@"location"];
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    
-    //2013-01-06T11:46:10Z
-    dateFormatter.dateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'";
-    
+        
     NSDictionary *parameters = @{@"username" : [NSUserDefaults standardUserDefaults].username,
                                  @"deviceToken" : [NSUserDefaults standardUserDefaults].registeredDeviceToken,
                                  @"latitude" : [NSNumber numberWithDouble:coordinate.latitude],

@@ -7,45 +7,50 @@
 //
 
 #import "HRDMapViewController.h"
-#import "HRDAnnotation.h"
 #import "HRDAPI.h"
 #import "NSUserDefaults+Herd.h"
 #import "HRDGeoMath.h"
 #import "HRDAppDelegate.h"
 #import <MapKit/MapKit.h>
 
-static CLLocationDegrees const MeetingPointLatitude = 37.79125f;
-static CLLocationDegrees const MeetingPointLongitude = -122.40128f;
+//static CLLocationDegrees const MeetingPointLatitude = 37.79125f;
+//static CLLocationDegrees const MeetingPointLongitude = -122.40128f;
 
-static CGFloat const DefaultMapSpan = 0.5f;
+static CGFloat const DefaultMapSpan = 1.5f;
 
 @interface HRDMapViewController ()
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UITextField *nameTextField;
 @property (strong, nonatomic) IBOutlet UISwitch *trackingSwitch;
-@property (strong, nonatomic) HRDAnnotation *meetingPointAnnotation;
 @property (strong, nonatomic) NSMutableDictionary *otherUserAnnotations;
 
 @end
 
 @implementation HRDMapViewController
 
-- (void)viewDidLoad
+- (void)setMeetingPointAnnotation:(HRDAnnotation *)meetingPointAnnotation
 {
-    [super viewDidLoad];
+    if (_meetingPointAnnotation == meetingPointAnnotation) return;
     
-    self.otherUserAnnotations = [NSMutableDictionary dictionary];
+    if (!meetingPointAnnotation) {
+        [self.mapView removeAnnotation:self.meetingPointAnnotation];
+    }
     
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(MeetingPointLatitude, MeetingPointLongitude);
-	
-    self.meetingPointAnnotation = [[HRDAnnotation alloc] initWithUUID:nil coordinate:coordinate title:@"SeatMe HQ" hasArrived:NO];
+    _meetingPointAnnotation = meetingPointAnnotation;
     
     [self.mapView addAnnotation:self.meetingPointAnnotation];
     
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.meetingPointAnnotation.coordinate, convertMilesToMeters(DefaultMapSpan), (DefaultMapSpan));
     
-    self.mapView.region = region;
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.otherUserAnnotations = [NSMutableDictionary dictionary];
     
     self.mapView.showsUserLocation = YES;
     
@@ -55,6 +60,18 @@ static CGFloat const DefaultMapSpan = 0.5f;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [HRDAPI retrieveEventWithCompletion:^(HRDAnnotation *eventAnnotation, NSDate *eventDate, NSError *error) {
+        if (error) {
+            NSLog(@"ERROR retrieveing event: %@",error);
+            return;
+        }
+        
+        [NSUserDefaults standardUserDefaults].eventDate = eventDate;
+        self.meetingPointAnnotation = eventAnnotation;
+        [(HRDAppDelegate *)[UIApplication sharedApplication].delegate updateTrackingStatus];
+        [self updateUserLocations];
+    }];
+    
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     [self updateUserLocations];
 }
@@ -100,14 +117,12 @@ static CGFloat const DefaultMapSpan = 0.5f;
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     HRDAppDelegate *appDelegate = (HRDAppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    [NSUserDefaults standardUserDefaults].eventDate = isTracking ? [self nextEventDate] : nil;
     [appDelegate updateTrackingStatus];
 }
 
 - (IBAction)moveToUserLocation
 {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, convertMilesToMeters(DefaultMapSpan*2), (DefaultMapSpan*2));
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, convertMilesToMeters(DefaultMapSpan), (DefaultMapSpan));
     
     [self.mapView setRegion:region animated:YES];
 }
@@ -157,7 +172,7 @@ static CGFloat const DefaultMapSpan = 0.5f;
     [HRDAPI retrieveAllUserAnnotationsWithCompletion:^(NSArray *userAnnotations, NSError *error) {
         if (error) {
             NSLog(@"Error loading all users: %@",error);
-            [self performSelector:@selector(updateUserLocations) withObject:nil afterDelay:5.0f];
+            [self performSelector:@selector(updateUserLocations) withObject:nil afterDelay:10.0f];
             return;
         }
         
@@ -203,7 +218,7 @@ static CGFloat const DefaultMapSpan = 0.5f;
             [self.otherUserAnnotations removeObjectForKey:oldAnnotation.uuid];
         }
         
-        [self performSelector:@selector(updateUserLocations) withObject:nil afterDelay:2.0f];
+        [self performSelector:@selector(updateUserLocations) withObject:nil afterDelay:5.0f];
     }];
 }
 
@@ -213,8 +228,8 @@ static CGFloat const DefaultMapSpan = 0.5f;
 - (NSDate *)nextEventDate
 {
     NSDateComponents *eventDateComponents = [[NSDateComponents alloc] init];
-    eventDateComponents.hour = 10;
-    eventDateComponents.minute = 10;
+    eventDateComponents.hour = 19;
+    eventDateComponents.minute = 30;
     eventDateComponents.second = 0;
 
     NSCalendar *calendar = [NSCalendar currentCalendar];

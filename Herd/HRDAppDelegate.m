@@ -154,9 +154,7 @@ typedef enum {
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     BOOL isInBackground = [UIApplication sharedApplication].applicationState == UIApplicationStateBackground;
-    
-    if (isInBackground )
-    
+        
     if (locations.count) {
         [self sendLocationUpdate:locations[locations.count - 1] isInBackground:isInBackground];
     };

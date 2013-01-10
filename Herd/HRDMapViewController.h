@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HRDAnnotation.h"
 
 @interface HRDMapViewController : UIViewController
+
+@property (strong, nonatomic) HRDAnnotation *meetingPointAnnotation;
 
 @end

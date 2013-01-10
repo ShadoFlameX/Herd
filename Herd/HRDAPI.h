@@ -14,6 +14,8 @@
 
 + (void)retrieveAllUserAnnotationsWithCompletion:(void(^)(NSArray *userAnnotations, NSError *error))completionBlock;
 
++ (void)retrieveEventWithCompletion:(void(^)(HRDAnnotation *eventAnnotation, NSDate *eventDate, NSError *error))completionBlock;
+
 + (void)updateUserWithLocation:(CLLocationCoordinate2D)coordinate;
 
 @end
