@@ -60,19 +60,6 @@ static CGFloat const DefaultMapSpan = 1.5f;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [HRDAPI retrieveEventWithCompletion:^(HRDAnnotation *eventAnnotation, NSDate *eventDate, NSError *error) {
-        if (error) {
-            NSLog(@"ERROR retrieveing event: %@",error);
-            return;
-        }
-        
-        [NSUserDefaults standardUserDefaults].eventDate = eventDate;
-        self.meetingPointAnnotation = eventAnnotation;
-        [(HRDAppDelegate *)[UIApplication sharedApplication].delegate updateTrackingStatus];
-        [self updateUserLocations];
-    }];
-    
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     [self updateUserLocations];
 }
 
@@ -169,6 +156,8 @@ static CGFloat const DefaultMapSpan = 1.5f;
 
 - (void)updateUserLocations
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateUserLocations) object:nil];
+    
     [HRDAPI retrieveAllUserAnnotationsWithCompletion:^(NSArray *userAnnotations, NSError *error) {
         if (error) {
             NSLog(@"Error loading all users: %@",error);

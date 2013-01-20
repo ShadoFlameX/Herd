@@ -14,5 +14,6 @@
 @property (copy, nonatomic) NSString *username;
 @property (assign) BOOL trackingUser;
 @property (strong, nonatomic) NSDate *eventDate;
+@property (strong, nonatomic) NSDate *lastEventUpdate;
 
 @end

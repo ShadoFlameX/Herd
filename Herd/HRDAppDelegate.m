@@ -24,6 +24,7 @@ typedef enum {
     CLLocationManager *_locationManager;
     UIBackgroundTaskIdentifier _backgroundLocationTask;
     BOOL _isTrackingLocationAccurately;
+    BOOL _isUpdatingEvent;
 }
 
 @end
@@ -38,7 +39,6 @@ typedef enum {
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        _locationManager.distanceFilter = 10;
     }
     
     return _locationManager;
@@ -54,6 +54,8 @@ typedef enum {
     if ([NSUserDefaults standardUserDefaults].trackingUser) {
         [self updateTrackingStatus];
     }
+    
+    [self updateEvent];
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                                            UIRemoteNotificationTypeSound |
@@ -80,7 +82,7 @@ typedef enum {
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-
+    [self updateEvent];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -117,7 +119,7 @@ typedef enum {
 {
 	NSLog(@"Failed to get token, error: %@", error);
     
-    [NSUserDefaults standardUserDefaults].registeredDeviceToken = @"4";
+//    [NSUserDefaults standardUserDefaults].registeredDeviceToken = @"4";
 }
 
 
@@ -157,6 +159,9 @@ typedef enum {
         
     if (locations.count) {
         [self sendLocationUpdate:locations[locations.count - 1] isInBackground:isInBackground];
+        if ([[NSUserDefaults standardUserDefaults].lastEventUpdate timeIntervalSinceNow] < -60) {
+            [self updateEvent];
+        }
     };
 }
 
@@ -206,6 +211,33 @@ typedef enum {
     } else {
         return isCloseToEventTime ? EventTimeProximitySoonAfter : EventTimeProximityAfter;
     }
+}
+
+ - (void)updateEvent
+{
+    if (_isUpdatingEvent) return;
+    
+    _isUpdatingEvent = YES;
+    
+    [HRDAPI retrieveEventWithCompletion:^(HRDAnnotation *eventAnnotation, NSDate *eventDate, NSError *error) {
+        _isUpdatingEvent = NO;
+        
+        if (error) {
+            NSLog(@"ERROR retrieveing event: %@",error);
+            return;
+        }
+        
+        [NSUserDefaults standardUserDefaults].eventDate = eventDate;
+        [NSUserDefaults standardUserDefaults].lastEventUpdate = [NSDate date];
+        
+        if (self.viewController.meetingPointAnnotation.coordinate.latitude != eventAnnotation.coordinate.latitude ||
+            self.viewController.meetingPointAnnotation.coordinate.longitude != eventAnnotation.coordinate.longitude) {
+            self.viewController.meetingPointAnnotation = eventAnnotation;
+        }
+        [(HRDAppDelegate *)[UIApplication sharedApplication].delegate updateTrackingStatus];
+    }];
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 @end

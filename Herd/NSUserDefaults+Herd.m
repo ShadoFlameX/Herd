@@ -13,6 +13,7 @@ static NSString * const RegisteredPushTokenKey = @"registeredPushToken";
 static NSString * const UsernameKey = @"username";
 static NSString * const TrackingUserKey = @"trackingUser";
 static NSString * const EventDateKey = @"eventDate";
+static NSString * const LastEventUpdateKey = @"lastEventUpdate";
 
 @implementation NSUserDefaults (Herd)
 
@@ -63,6 +64,19 @@ static NSString * const EventDateKey = @"eventDate";
         [self setObject:eventDate forKey:EventDateKey];
     } else {
         [self removeObjectForKey:EventDateKey];
+    }
+}
+
+- (NSDate *)lastEventUpdate {
+    return [self objectForKey:LastEventUpdateKey];
+}
+
+- (void)setLastEventUpdate:(NSDate *)lastEventUpdate
+{
+    if (lastEventUpdate) {
+        [self setObject:lastEventUpdate forKey:LastEventUpdateKey];
+    } else {
+        [self removeObjectForKey:LastEventUpdateKey];
     }
 }
 
