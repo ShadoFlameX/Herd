@@ -172,8 +172,11 @@ static CGFloat const DefaultMapSpan = 1.5f;
             
             if ([self.otherUserAnnotations.allKeys containsObject:annotation.uuid]) {
                 HRDAnnotation *existingAnnotation = [self.otherUserAnnotations valueForKey:annotation.uuid];
-                existingAnnotation.coordinate = annotation.coordinate;
                 existingAnnotation.title = annotation.title;
+                
+                [UIView animateWithDuration:1.0f animations:^{
+                    existingAnnotation.coordinate = annotation.coordinate;
+                }];
                 
                 BOOL reloadAnnotationView = existingAnnotation.hasArrived != annotation.hasArrived;
                 
@@ -207,7 +210,7 @@ static CGFloat const DefaultMapSpan = 1.5f;
             [self.otherUserAnnotations removeObjectForKey:oldAnnotation.uuid];
         }
         
-        [self performSelector:@selector(updateUserLocations) withObject:nil afterDelay:5.0f];
+        [self performSelector:@selector(updateUserLocations) withObject:nil afterDelay:3.0f];
     }];
 }
 
